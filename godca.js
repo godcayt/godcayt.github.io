@@ -1,4 +1,4 @@
-// Vídeos: se cargan al pulsar (la web va más rápida y Google la valora mejor)
+// Vídeos: se cargan al pulsar (la web va más rápida)
 document.querySelectorAll('.video[data-id]').forEach(function(v){
   var id=v.dataset.id;
   v.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
@@ -6,14 +6,14 @@ document.querySelectorAll('.video[data-id]').forEach(function(v){
     v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="'+(v.dataset.t||'Vídeo de Godca')+'"></iframe>';
   },{once:true});
 });
-// Cuenta atrás hasta las 00:00 del 19 de noviembre en la hora del visitante
-(function(){
-  var c=document.getElementById('cuenta'); if(!c) return;
-  var fin=new Date(2026,10,19,0,0,0);
+// Cuentas atrás: data-cuenta="local" (medianoche del 19 en la hora del visitante) o una fecha UTC
+var local=new Date(2026,10,19,0,0,0);
+document.querySelectorAll('[data-cuenta]').forEach(function(c){
+  var fin=c.dataset.cuenta==='local'?local:new Date(c.dataset.cuenta);
   function pinta(){
     var ms=fin-new Date();
     if(ms<=0){
-      document.getElementById('cuenta-bloque').innerHTML='<h2 style="margin-top:20px">🌴 GTA 6 ya está disponible en tu zona</h2><p class="lead">Si aún no puedes entrar, revisa que la región de tu cuenta de PlayStation o Xbox coincide con tu país.</p><a class="btn" href="respuestas.html">Resolver dudas del lanzamiento</a>';
+      c.outerHTML='<div class="respuesta"><b>🌴 GTA 6 ya está disponible</b><span>Si no puedes entrar, revisa la región de tu cuenta</span></div>';
       clearInterval(t); return;
     }
     var s=Math.floor(ms/1000);
@@ -23,9 +23,26 @@ document.querySelectorAll('.video[data-id]').forEach(function(v){
     c.querySelector('[data-s]').textContent=String(s%60).padStart(2,'0');
   }
   var t=setInterval(pinta,1000); pinta();
-  try{
-    var zona=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
-    var z=document.getElementById('zona'); if(z) z.textContent=zona.replace(/_/g,' ');
-    document.querySelectorAll('tr[data-tz]').forEach(function(r){ if(r.dataset.tz.split(' ').indexOf(zona)>=0) r.classList.add('tu'); });
-  }catch(e){}
+});
+try{
+  var z=document.getElementById('zona'); if(z) z.textContent=(Intl.DateTimeFormat().resolvedOptions().timeZone||'').replace(/_/g,' ');
+  var iso=local.toISOString().replace('.000','');
+  document.querySelectorAll('tr[data-utc]').forEach(function(r){ if(r.dataset.utc===iso) r.classList.add('tu'); });
+}catch(e){}
+// Lista de la noche del lanzamiento (se guarda en este navegador)
+(function(){
+  var cajas=document.querySelectorAll('[data-check]'); if(!cajas.length) return;
+  var p=document.getElementById('check-progreso');
+  function lee(k){try{return localStorage.getItem('godca-'+k)==='1'}catch(e){return false}}
+  function guarda(k,v){try{localStorage.setItem('godca-'+k,v?'1':'0')}catch(e){}}
+  function cuenta(){var n=0;cajas.forEach(function(c){if(c.checked)n++});if(p)p.textContent=n===cajas.length?'🌴 Todo listo. Nos vemos en Leonida.':'Llevas '+n+' de '+cajas.length+'.'}
+  cajas.forEach(function(c){c.checked=lee(c.dataset.check);c.addEventListener('change',function(){guarda(c.dataset.check,c.checked);cuenta()})});
+  cuenta();
 })();
+// Copiar enlace
+document.querySelectorAll('[data-copiar]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var u=b.dataset.copiar;
+    (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.textContent='¡Copiado!'},function(){prompt('Copia el enlace:',u)});
+  });
+});

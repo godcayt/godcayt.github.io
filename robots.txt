@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://alvarooouuu-ship-it.github.io/Godca/sitemap.xml
+Sitemap: https://godcayt.github.io/sitemap.xml
