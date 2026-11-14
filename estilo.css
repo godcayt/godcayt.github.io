@@ -78,3 +78,17 @@ footer{border-top:1px solid #22232c;margin-top:60px;padding:26px 0 40px;color:#8
 .pie-paises{line-height:2}
 .pie-paises a{color:#b9b9c6}
 :focus-visible{outline:3px solid #FFD400;outline-offset:2px}
+/* --- v3: imágenes --- */
+.banner{position:relative;margin:24px 0 0;border-radius:18px;overflow:hidden;aspect-ratio:21/9;background:#17181f;border:1px solid #2a2b35}
+.banner img{width:100%;height:100%;object-fit:cover;display:block}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0e0f13e6)}
+.banner figcaption{position:absolute;right:12px;bottom:8px;z-index:2;font-size:12px;color:#c9c9d4cc}
+.banner.alto{aspect-ratio:16/8}
+.postales{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:16px 0}
+.postales figure{margin:0;background:#17181f;border:1px solid #2a2b35;border-radius:14px;overflow:hidden}
+.postales img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.postales figcaption{padding:10px 14px;font-size:15px;color:#c9c9d4}
+.postales figcaption b{display:block;color:#fff;font-family:MB,Impact,sans-serif;font-size:17px;letter-spacing:.3px}
+.etq{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-right:6px;vertical-align:2px}
+.etq.ok{background:#173d22;color:#7ee29a}.etq.rumor{background:#3d3517;color:#FFD400}.etq.teoria{background:#2b1f3d;color:#c9a6ff}
+@media(max-width:760px){header.top .wrap{height:auto;flex-wrap:wrap;padding-top:10px}header.top nav{width:100%;overflow-x:auto;white-space:nowrap;padding:8px 0 10px;scrollbar-width:none}header.top nav a:first-child{margin-left:0}.banner{aspect-ratio:16/9}}
