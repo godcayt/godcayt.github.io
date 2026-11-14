@@ -1,0 +1,52 @@
+@font-face{font-family:MB;src:url(fonts/MontserratBlack.woff2) format("woff2");font-display:swap}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0e0f13;color:#e9e9ee;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif}
+a{color:#FFD400}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid #22232c;background:#0e0f13ee;position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:MB,Impact,sans-serif;font-size:24px;color:#fff;text-decoration:none;letter-spacing:.5px}
+.logo span{color:#FFD400}
+nav a{color:#c9c9d4;text-decoration:none;margin-left:18px;font-weight:600;font-size:15px}
+nav a:hover{color:#FFD400}
+h1,h2,h3{font-family:MB,Impact,sans-serif;line-height:1.15;color:#fff;letter-spacing:.3px}
+h1{font-size:clamp(32px,6vw,58px);margin:42px 0 10px}
+h1 em{font-style:normal;color:#FFD400}
+h2{font-size:clamp(24px,4vw,34px);margin:52px 0 14px}
+h3{font-size:20px;margin:26px 0 6px}
+.lead{font-size:19px;color:#b9b9c6;max-width:760px}
+.cuenta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 8px;max-width:640px}
+.cuenta div{background:#17181f;border:1px solid #2a2b35;border-radius:16px;padding:16px 8px;text-align:center}
+.cuenta b{display:block;font-family:MB,Impact,sans-serif;font-size:clamp(34px,7vw,56px);color:#FFD400;line-height:1}
+.cuenta i{font-style:normal;color:#9a9aa8;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+.nota{color:#9a9aa8;font-size:15px}
+.btn{display:inline-block;background:#FFD400;color:#0e0f13;font-weight:800;text-decoration:none;padding:13px 22px;border-radius:12px;margin:8px 10px 8px 0}
+.btn.sec{background:#17181f;color:#fff;border:1px solid #2a2b35}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:16px}
+th,td{padding:11px 12px;border-bottom:1px solid #22232c;text-align:left}
+th{color:#FFD400;font-size:14px;text-transform:uppercase;letter-spacing:.8px}
+tr.tu{background:#2a250a}
+.card{background:#17181f;border:1px solid #2a2b35;border-radius:16px;padding:18px 20px;margin:14px 0}
+.lista li{margin:6px 0}
+.video{position:relative;aspect-ratio:16/9;background:#000 center/cover no-repeat;border-radius:16px;overflow:hidden;cursor:pointer;margin:14px 0;border:1px solid #2a2b35}
+.video::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,#000c)}
+.video button{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:54px;border:0;border-radius:14px;background:#FFD400;cursor:pointer;z-index:2}
+.video button::before{content:"";position:absolute;left:31px;top:15px;border-left:22px solid #0e0f13;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.video span{position:absolute;left:16px;right:16px;bottom:12px;color:#fff;font-weight:700;z-index:2}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+details{background:#17181f;border:1px solid #2a2b35;border-radius:14px;margin:10px 0;padding:0 18px}
+summary{cursor:pointer;font-weight:800;font-size:18px;padding:16px 0;color:#fff;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";color:#FFD400;font-family:MB,Impact,sans-serif;margin-right:10px}
+details[open] summary::before{content:"–"}
+details p,details ul{margin:0 0 14px;color:#c9c9d4}
+.afi{border-color:#3d3517}
+.afi small{color:#8a8a98}
+.prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.prods a{display:block;background:#0e0f13;border:1px solid #2a2b35;border-radius:12px;padding:12px 14px;text-decoration:none;color:#fff;font-weight:700}
+.prods a i{display:block;font-style:normal;color:#9a9aa8;font-weight:500;font-size:14px}
+footer{border-top:1px solid #22232c;margin-top:60px;padding:26px 0 40px;color:#8a8a98;font-size:14px}
+.sus{background:linear-gradient(135deg,#2a250a,#17181f);border:1px solid #3d3517;border-radius:18px;padding:22px;margin:40px 0}
+.sus h2{margin:0 0 6px}
+@media(max-width:600px){nav a{margin-left:12px;font-size:14px}.cuenta{gap:8px}body{font-size:16px}}
