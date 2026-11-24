@@ -13,12 +13,12 @@
     const buf = await r.arrayBuffer();
     s.textContent = 'Enviando ' + buf.byteLength + ' bytes…';
     const target = 'https://business.facebook.com';
-    window.opener.postMessage({ godcaRelay: true, name: f, buf }, target, [buf]);
+    (window.opener||window.parent).postMessage({ godcaRelay: true, name: f, buf }, target, [buf]);
     s.textContent = 'Enviado. Se cierra sola.';
     setTimeout(() => window.close(), 1500);
   } catch (e) {
     s.textContent = 'Error: ' + e.message;
-    try { window.opener.postMessage({ godcaRelay: true, error: String(e) }, 'https://business.facebook.com'); } catch (_) {}
+    try { (window.opener||window.parent).postMessage({ godcaRelay: true, error: String(e) }, 'https://business.facebook.com'); } catch (_) {}
   }
 })();
 </script>
